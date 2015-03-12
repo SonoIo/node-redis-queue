@@ -1,6 +1,6 @@
 {
   "name": "node-redis-queue",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple queue with reintroduction",
   "main": "lib/Queue.js",
   "scripts": {
@@ -11,7 +11,9 @@
     "url": "https://github.com/SonoIo/redis-queue.git"
   },
   "keywords": [
-    "utils"
+    "utils",
+    "queue",
+    "redis"
   ],
   "author": "Inside a bit",
   "license": "MIT",
@@ -19,9 +21,6 @@
     "url": "https://github.com/SonoIo/redis-queue/issues"
   },
   "homepage": "https://github.com/SonoIo/redis-queue",
-  "dependencies": {
-    "context": "git://github.com/SonoIo/context-utils#master"
-  },
   "devDependencies": {
     "redis": "~0.12.1",
     "mocha": "~2.2.1",
