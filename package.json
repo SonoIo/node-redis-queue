@@ -1,0 +1,30 @@
+{
+  "name": "node-redis-queue",
+  "version": "1.0.0",
+  "description": "Simple queue with reintroduction",
+  "main": "lib/Queue.js",
+  "scripts": {
+    "test": "mocha --reporter spec --timeout 5000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SonoIo/redis-queue.git"
+  },
+  "keywords": [
+    "utils"
+  ],
+  "author": "Inside a bit",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SonoIo/redis-queue/issues"
+  },
+  "homepage": "https://github.com/SonoIo/redis-queue",
+  "dependencies": {
+    "context": "git://github.com/SonoIo/context-utils#master"
+  },
+  "devDependencies": {
+    "redis": "~0.12.1",
+    "mocha": "~2.2.1",
+    "chai": "~2.1.1"
+  }
+}
