@@ -1,6 +1,6 @@
 {
   "name": "node-redis-queue",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Simple queue with reintroduction",
   "main": "lib/Queue.js",
   "scripts": {

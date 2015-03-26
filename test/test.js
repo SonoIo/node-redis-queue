@@ -26,7 +26,7 @@ describe('Queue', function() {
 		});
 	});
 
-	it('Should add a new task', function (done) {
+	it('should add a new task', function (done) {
 		var queue = new Queue({ 
 			name: 'foo',
 			redisClient: cli,
@@ -52,17 +52,17 @@ describe('Queue', function() {
 		});
 	});
 
-	it('Should polling a queue', function (done) {
+	it('should polling a queue', function (done) {
 		var queue = new Queue({ 
 			name: 'foo',
 			redisClient: cli,
 			redisPopClient: pop
 		});
 		var counter = 0;
-		queue.startPolling(function (data, next) {
-			assert.equal(data.foo, 'bar');
-			assert.equal(data.num, counter + 1);
-			counter = data.num;
+		queue.startPolling(function (task, next) {
+			assert.equal(task.data.foo, 'bar');
+			assert.equal(task.data.num, counter + 1);
+			counter = task.data.num;
 			setTimeout(function() {
 				if (counter < 5)
 					next();
@@ -82,4 +82,33 @@ describe('Queue', function() {
 		}
 	});
 
+	it('should complete a task', function (done) {
+		var task = { foo: 'bar' };
+		var queue = new Queue({ 
+			name: 'foo',
+			redisClient: cli,
+			redisPopClient: pop
+		});
+		queue.add(task, function (err) {
+			if (err) return done(err);
+		});
+		queue.startPolling(function (task, next) {
+			assert.equal(task.hash, Queue.getHashFromData(task.data));
+			assert.equal(task.data.foo, 'bar');
+			queue.complete(task.hash, function (err) {
+				if (err) return done(err);
+				cli.hget('queue:foo:hash', task.hash, function (err, res) {
+					if (err) return done(err);
+					assert.isNull(res);
+					return done();
+				})
+			})
+		});
+	});
+
 });
+
+
+
+
+
